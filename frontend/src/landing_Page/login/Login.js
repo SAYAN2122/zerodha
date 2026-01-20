@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-import config from "../config";
+import config from "../../config";
 
 export default function Login() {
   const [form, setForm] = useState({ email: "", password: "" });
