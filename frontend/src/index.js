@@ -12,6 +12,9 @@ import SupportPage from './landing_Page/support/SupportPage';
 import NotFound from './landing_Page/NotFound';
 import Navbar from './landing_Page/Navbar';
 import Footer from './landing_Page/Footer';
+import Login from "./landing_Page/login/Login";
+
+<Route path="/login" element={<Login />} />
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
