@@ -15,7 +15,7 @@ export default function Signup() {
 
     try {
       const res = await axios.post(
-        `${BACKEND_URL}/api/auth/register`,
+        `${BACKEND_URL}/api/auth/signup`,
         form
       );
 
