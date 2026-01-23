@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
-import config from "../../config"; // adjust path if needed
+
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
 export default function Signup() {
   const [form, setForm] = useState({
@@ -14,14 +15,18 @@ export default function Signup() {
 
     try {
       const res = await axios.post(
-        `${config.BACKEND_URL}/api/auth/signup`,
+        `${BACKEND_URL}/api/auth/register`,
         form
       );
 
       alert("Signup successful");
-      localStorage.setItem("token", res.data.token);
+
+      if (res.data.token) {
+        localStorage.setItem("token", res.data.token);
+      }
 
     } catch (err) {
+      console.error(err);
       alert(err.response?.data?.message || "Signup failed");
     }
   };
@@ -33,6 +38,7 @@ export default function Signup() {
         placeholder="Name"
         value={form.name}
         onChange={(e) => setForm({ ...form, name: e.target.value })}
+        required
       />
 
       <input
@@ -40,6 +46,7 @@ export default function Signup() {
         placeholder="Email"
         value={form.email}
         onChange={(e) => setForm({ ...form, email: e.target.value })}
+        required
       />
 
       <input
@@ -47,6 +54,7 @@ export default function Signup() {
         placeholder="Password"
         value={form.password}
         onChange={(e) => setForm({ ...form, password: e.target.value })}
+        required
       />
 
       <button type="submit">Sign Up</button>
